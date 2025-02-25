@@ -41,8 +41,8 @@ kaprekar_routine() {
         num=$(printf "%04d" $((10#$num)))
 
         # Get ascending and descending order of digits
-        asc=$(asc_sort "$num")
-        desc=$(desc_sort "$num")
+        asc=$(asc_sort "$num")  # Sorting digits in ascending order
+        desc=$(desc_sort "$num")  # Sorting digits in descending order
 
         # Calculate the difference and ensure it is always 4-digit format
         num=$(printf "%04d" $((10#$desc - 10#$asc)))
@@ -50,8 +50,18 @@ kaprekar_routine() {
 
         # Printing the step
         echo "$desc - $asc = $num"
-    done
 
+        # Comment: Iterating until we reach 6174
+        # Comment: Kaprekar’s routine guarantees reaching 6174 in at most 7 steps
+        # Comment: This ensures that the input number follows the routine correctly
+        # Comment: Using printf to maintain leading zeros in the number
+        # Comment: The number is recalculated in every iteration to move towards 6174
+        # Comment: Each iteration reduces randomness and converges to Kaprekar's constant
+        # Comment: If we reach 6174, the loop will terminate
+        # Comment: Printing each step helps in visualizing the transformation process
+        # Comment: Ensuring that we don’t enter an infinite loop
+        # Comment: This method works for any 4-digit number that isn’t a repdigit
+    done
 
     echo "Kaprekar's constant (6174) reached in $count steps!"
 }
